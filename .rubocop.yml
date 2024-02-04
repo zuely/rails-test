@@ -1,0 +1,18 @@
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.2
+
+Metrics/BlockLength:
+  Enabled: false
+Metrics/CyclomaticComplexity:
+  Enabled: false
+Metrics/MethodLength:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/Documentation:
+  Enabled: false
+Style/EmptyMethod:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
