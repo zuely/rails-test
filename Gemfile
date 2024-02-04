@@ -47,6 +47,9 @@ gem "bootsnap", require: false
 # https://github.com/teamcapybara/capybara
 gem 'capybara'
 
+# https://github.com/simplecov-ruby/simplecov
+gem 'simplecov', require: false, group: :test
+
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri windows ]
