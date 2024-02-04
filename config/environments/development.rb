@@ -76,4 +76,10 @@ Rails.application.configure do
 
   # Let use any host for rails
   config.hosts.clear
+
+  # for better_errors
+  config.consider_all_requests_local = true
+  config.web_console.whiny_requests = false
+  config.web_console.permissions = '0.0.0.0/0'
+
 end
