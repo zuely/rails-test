@@ -1,0 +1,12 @@
+<h1>
+  <%= @article.title %>
+  <small>by <%= @article.author %></small>
+</h1>
+
+<div class="mb-3 text-pre-wrap">
+  <%= @article.body %>
+</div>
+
+<div class="mb-3 text-end">
+  <%= link_to 'Back', articles_path, class: 'btn btn-primary' %>
+</div>

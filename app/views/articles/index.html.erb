@@ -1,0 +1,24 @@
+<div class="row align-items-center mb-2">
+  <div class="col">
+    <h1 class="mb-0">Articles</h1>
+  </div>
+  <div class="col-auto">
+    <%= link_to 'New', articles_new_path, class: 'btn btn-primary' %>
+  </div>
+</div>
+
+<%=
+  render partial: 'shared/pagination',
+         locals: {
+           page: @page,
+           items_per_page: @items_per_page,
+           total: @articles_total,
+           showTotal: false,
+         }
+%>
+
+<%= render partial: 'table' %>
+
+<%=
+  render partial: 'shared/pagination', locals: { page: @page, items_per_page: @items_per_page, total: @articles_total }
+%>

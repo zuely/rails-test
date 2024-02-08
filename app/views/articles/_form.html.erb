@@ -1,0 +1,26 @@
+<%= form_with model: article, data: { turbo: false }, html: { novalidate: true, autocomplete: "off" },
+  url: url do |form| %>
+  <fieldset>
+    <div class="mb-3">
+      <%= form.label :title, class: 'form-label' %>
+      <%= form.text_field :title, class: "form-control #{article.errors[:title].size > 0 ? 'is-invalid' : ''}" %>
+      <%= render partial: 'shared/form-error', locals: { errors: article.errors, type: :title } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :author, class: 'form-label' %>
+      <%= form.text_field :author, class: "form-control #{article.errors[:author].size > 0 ? 'is-invalid' : ''}" %>
+      <%= render partial: 'shared/form-error', locals: { errors: article.errors, type: :author } %>
+    </div>
+    <div class="mb-3">
+      <%= form.label :body, class: 'form-label' %>
+      <%= form.text_area :body, rows: 8, class: "form-control #{article.errors[:body].size > 0 ? 'is-invalid' : ''}" %>
+      <%= render partial: 'shared/form-error', locals: { errors: article.errors, type: :body } %>
+    </div>
+    <div class="mb-3 text-end">
+      <% if defined?(back) %>
+        <%= link_to 'Cancel', back, class: 'btn btn-danger' %>
+      <% end %>
+      <%= form.submit 'Submit', class: 'btn btn-primary' %>
+    </div>
+  </fieldset>
+<% end %>

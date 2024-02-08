@@ -1,0 +1,32 @@
+<nav>
+  <ul class="pagination justify-content-end mb-1">
+    <li class="page-item <%= page <= 0 ? 'disabled' : '' %>">
+      <%=
+        link_to "<i class=\"fa-solid fa-chevron-left fa-fw\"></i>".html_safe,
+                url_for(params.permit!.merge(page: page - 1)),
+                class: 'page-link'
+      %>
+    </li>
+    <%
+    (total / items_per_page.to_f).ceil.times do |i|
+    %>
+      <li class="page-item">
+        <%=
+          link_to "#{i + 1}", url_for(params.permit!.merge(page: i)), class: "page-link #{i == page ? 'active' : ''}"
+        %>
+      </li>
+    <%
+    end
+    %>
+    <li class="page-item <%= page >= (total / items_per_page.to_f).ceil - 1 ? 'disabled' : '' %>">
+      <%=
+        link_to "<i class=\"fa-solid fa-chevron-right fa-fw\"></i>".html_safe,
+                url_for(params.permit!.merge(page: page + 1)),
+                class: 'page-link'
+      %>
+    </li>
+  </ul>
+  <% if !defined?(showTotal) || showTotal != false %>
+    <div class="text-end mb-3">Total: <%= total %></div>
+  <% end %>
+</nav>

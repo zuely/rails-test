@@ -1,0 +1,14 @@
+<table class="table table-middle">
+  <thead>
+    <tr>
+      <th>Author</th>
+      <th>Title</th>
+      <th class="fit">Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @articles.each do |article| %>
+      <%= render partial: 'table-row', locals: { article: article } %>
+    <% end %>
+  </tbody>
+</table>
