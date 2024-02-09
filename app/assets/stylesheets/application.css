@@ -13,3 +13,26 @@
  *= require_tree .
  *= require_self
  */
+
+table.table .fit {
+  width: 0;
+  min-width: fit-content;
+  text-wrap: nowrap;
+}
+
+table.table.table-middle th,
+table.table.table-middle td {
+  vertical-align: middle;
+}
+
+form.button_to {
+  display: inline-block;
+}
+
+.invalid-feedback.show {
+  display: block !important;
+}
+
+.text-pre-wrap {
+  white-space: pre-wrap;
+}

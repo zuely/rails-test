@@ -1,0 +1,22 @@
+<tr>
+  <td><%= article.author %></td>
+  <td><%= article.title %></td>
+  <td class="fit">
+    <%=
+      link_to "<i class=\"fa-solid fa-eye fa-fw\"></i>".html_safe,
+              articles_view_path(article.id),
+              class: 'btn btn-primary'
+    %>
+    <%=
+      link_to "<i class=\"fa-solid fa-pencil fa-fw\"></i>".html_safe,
+              articles_edit_path(article.id),
+              class: 'btn btn-primary'
+    %>
+    <%=
+      button_to "<i class=\"fa-solid fa-trash-can fa-fw\"></i>".html_safe,
+                articles_delete_path(article.id),
+                method: :delete,
+                class: 'btn btn-danger'
+    %>
+  </td>
+</tr>

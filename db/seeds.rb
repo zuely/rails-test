@@ -7,3 +7,7 @@
 #   ["Action", "Comedy", "Drama", "Horror"].each do |genre_name|
 #     MovieGenre.find_or_create_by!(name: genre_name)
 #   end
+
+20.times do |x|
+  Article.create title: "Title #{x}", body: "Body #{x}\nLine 2", author: 'Any author'
+end

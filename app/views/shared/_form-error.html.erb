@@ -1,0 +1,9 @@
+<%
+errors[type].each do |error|
+%>
+  <div class="invalid-feedback show">
+    <%= errors.full_message(type, error) %>
+  </div>
+<%
+end
+%>
