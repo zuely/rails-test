@@ -52,7 +52,7 @@ group :development, :test do
   gem 'capybara'
 
   # https://github.com/simplecov-ruby/simplecov
-  gem 'simplecov', require: false, group: :test
+  gem 'simplecov', require: false
 
   # https://github.com/rspec/rspec-rails
   gem 'rspec-rails', '~> 6.1.0'

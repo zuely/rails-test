@@ -13,7 +13,7 @@ class Article < ApplicationRecord
   end
 
   def validate_model
-    return unless body.length < 5
+    return if !body.nil? && body.size > 5
 
     errors.add :body, 'is too short'
   end
