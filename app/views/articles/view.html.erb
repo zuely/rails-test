@@ -3,8 +3,8 @@
   <small>by <%= @article.author %></small>
 </h1>
 
-<div class="mb-3 text-pre-wrap">
-  <%= @article.body %>
+<div class="mb-3">
+  <%= @article.body.html_safe %>
 </div>
 
 <div class="mb-3 text-end">
