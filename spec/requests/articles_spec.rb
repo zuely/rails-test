@@ -34,7 +34,6 @@ RSpec.describe '/articles', type: :request do
 
   describe 'GET /articles' do
     it 'renders a successful response' do
-      Article.create! valid_attributes
       get articles_url
       expect(response).to be_successful
     end
@@ -56,9 +55,21 @@ RSpec.describe '/articles', type: :request do
   end
 
   describe 'GET /articles/:id/edit' do
-    it 'renders a successful response' do
+    it 'renders a successful response by id' do
       article = Article.create! valid_attributes
       get articles_edit_url(article.id)
+      expect(response).to be_successful
+    end
+
+    it 'renders a successful response by url' do
+      article = Article.create! valid_attributes
+      get articles_edit_url(article.url)
+      expect(response).to be_successful
+    end
+
+    it 'renders a successful response by id-url' do
+      article = Article.create! valid_attributes
+      get articles_edit_url("#{article.id}-#{article.url}")
       expect(response).to be_successful
     end
 

@@ -53,9 +53,46 @@ class ArticlesController < ApplicationController
 
   private
 
+  def valid_id?(val)
+    true if val.is_a?(Numeric)
+
+    Integer(val)
+    true
+  rescue ArgumentError
+    false
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_article
-    @article = Article.find(params[:id])
+    id = params[:id]
+
+    # id is the real id
+    if valid_id?(id)
+      @article = Article.find(id)
+      return nil
+    end
+
+    # check if id has the form of id-url
+    id_split = id.split('-')
+    new_id = id_split[0]
+    if valid_id?(new_id)
+      new_url = id_split.drop(1).join('-')
+
+      @article = Article.find_by(id: new_id)
+      unless @article
+        render 'errors/404'
+        return nil
+      end
+
+      render 'errors/404' if @article.url != new_url
+      return nil
+    end
+
+    # search the article by url
+    articles = Article.where url: id
+    render 'errors/404' if articles.size != 1
+
+    @article = articles[0]
   rescue ActiveRecord::RecordNotFound
     render 'errors/404'
   end
