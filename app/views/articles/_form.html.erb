@@ -1,3 +1,7 @@
+<script type="module">
+  import 'tinymce';
+</script>
+
 <%= form_with model: article, data: { turbo: false }, html: { novalidate: true, autocomplete: "off" },
   url: url do |form| %>
   <fieldset>
@@ -13,7 +17,12 @@
     </div>
     <div class="mb-3">
       <%= form.label :body, class: 'form-label' %>
-      <%= form.text_area :body, rows: 8, class: "form-control #{article.errors[:body].size > 0 ? 'is-invalid' : ''}" %>
+      <%=
+        form.text_area :body,
+                       rows: 8,
+                       tinymce: 'true',
+                       class: "form-control #{article.errors[:body].size > 0 ? 'is-invalid' : ''}"
+      %>
       <%= render partial: 'shared/form-error', locals: { errors: article.errors, type: :body } %>
     </div>
     <div class="mb-3 text-end">
