@@ -2,13 +2,20 @@
   <ul class="pagination justify-content-end mb-1">
     <li class="page-item <%= page <= 0 ? 'disabled' : '' %>">
       <%=
+        link_to "<i class=\"fa-solid fa-chevron-left\"></i><i class=\"fa-solid fa-chevron-left\"></i>".html_safe,
+                url_for(params.permit!.merge(page: 0)),
+                class: 'page-link'
+      %>
+    </li>
+    <li class="page-item <%= page <= 0 ? 'disabled' : '' %>">
+      <%=
         link_to "<i class=\"fa-solid fa-chevron-left fa-fw\"></i>".html_safe,
                 url_for(params.permit!.merge(page: page - 1)),
                 class: 'page-link'
       %>
     </li>
     <%
-    (total / items_per_page.to_f).ceil.times do |i|
+    total_pages.times do |i|
     %>
       <li class="page-item">
         <%=
@@ -18,10 +25,17 @@
     <%
     end
     %>
-    <li class="page-item <%= page >= (total / items_per_page.to_f).ceil - 1 ? 'disabled' : '' %>">
+    <li class="page-item <%= page >= total_pages - 1 ? 'disabled' : '' %>">
       <%=
         link_to "<i class=\"fa-solid fa-chevron-right fa-fw\"></i>".html_safe,
                 url_for(params.permit!.merge(page: page + 1)),
+                class: 'page-link'
+      %>
+    </li>
+    <li class="page-item <%= page >= total_pages - 1 ? 'disabled' : '' %>">
+      <%=
+        link_to "<i class=\"fa-solid fa-chevron-right\"></i><i class=\"fa-solid fa-chevron-right\"></i>".html_safe,
+                url_for(params.permit!.merge(page: total_pages - 1)),
                 class: 'page-link'
       %>
     </li>

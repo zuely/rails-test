@@ -1,0 +1,28 @@
+<div class="row">
+  <div class="col-auto">
+    <form
+      id="form-pagination-display"
+      novalidate
+      autocomplete="off"
+      data-turbo="false"
+      action="<%= articles_path %>"
+      method="get"
+    >
+      <div class="mb-3">
+        <label class="pe-3">Display</label>
+        <select id="form-pagination-display-items_per_page" name="items_per_page" class="form-control">
+          <%
+          [6, 8, 12, 16].each do |x|
+            %>
+            <option value="<%= x %>" <%= x == @items_per_page ? 'selected="selected"' : '' %>>
+              <%= x %>
+            </option>
+          <%
+          end
+        %>
+        </select>
+      </div>
+    </form>
+  </div>
+  <div class="col"></div>
+</div>

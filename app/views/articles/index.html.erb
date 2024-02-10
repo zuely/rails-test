@@ -1,3 +1,7 @@
+<script type="module">
+  import '@pagination/display';
+</script>
+
 <div class="row align-items-center mb-2">
   <div class="col">
     <h1 class="mb-0">Articles</h1>
@@ -7,11 +11,14 @@
   </div>
 </div>
 
+<%= render partial: 'shared/pagination-config' %>
+
 <%=
   render partial: 'shared/pagination',
          locals: {
            page: @page,
            items_per_page: @items_per_page,
+           total_pages: @total_pages,
            total: @articles_total,
            showTotal: false,
          }
@@ -20,5 +27,11 @@
 <%= render partial: 'table' %>
 
 <%=
-  render partial: 'shared/pagination', locals: { page: @page, items_per_page: @items_per_page, total: @articles_total }
+  render partial: 'shared/pagination',
+         locals: {
+           page: @page,
+           items_per_page: @items_per_page,
+           total_pages: @total_pages,
+           total: @articles_total,
+         }
 %>

@@ -1,12 +1,16 @@
 class ArticlesController < ApplicationController
+  include PaginationHelper
   before_action :set_article, only: %i[view edit update delete]
 
   # GET /articles
   def index
-    @page = params[:page].present? ? params[:page].to_i : 0
-    @items_per_page = 6
-    @articles = Article.offset(@page * @items_per_page).limit(@items_per_page).order(title: :asc)
     @articles_total = Article.count
+    pagination = pagination_param(params[:page], params[:items_per_page], @articles_total)
+
+    @page = pagination[:page]
+    @items_per_page = pagination[:items_per_page]
+    @total_pages = pagination[:total_pages]
+    @articles = Article.offset(@page * @items_per_page).limit(@items_per_page).order(title: :asc)
   end
 
   # GET /articles/new
