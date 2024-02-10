@@ -5,15 +5,14 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :author, presence: true
   validates :body, presence: true
-  validates :url, presence: true
   validate :validate_model
 
   def generate_url_from_title
     title.downcase
          .gsub(' ', '-') # Replace spaces for -
          .gsub(/[^a-z0-9-]/, '') # Ignore any character that is not a letter or a number
-         .gsub(/-{2,}/, '-')  # Replace multiple consecutive hyphens with a single hyphen
-         .gsub(/-\z/, '')     # Remove trailing hyphen
+         .gsub(/-{2,}/, '-') # Replace multiple consecutive hyphens with a single hyphen
+         .gsub(/\A-+|-+\z/, '') # Remove extra hyphen at the begging and at the end
   end
 
   private

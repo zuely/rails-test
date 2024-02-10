@@ -40,4 +40,26 @@ RSpec.describe Article, type: :model do
       expect(article).to be_valid
     end
   end
+
+  describe 'set url value' do
+    it 'from title "Test Title"' do
+      article = Article.create(title: 'Test Title', body: 'Lorem ipsum')
+      expect(article.url).to eq('test-title')
+    end
+
+    it 'from title "Test---Title!!"' do
+      article = Article.create(title: 'Test---Title!!', body: 'Lorem ipsum')
+      expect(article.url).to eq('test-title')
+    end
+
+    it 'from title "%TestTitle%"' do
+      article = Article.create(title: '%TestTitle%', body: 'Lorem ipsum')
+      expect(article.url).to eq('testtitle')
+    end
+
+    it 'from title "   Test    Title   "' do
+      article = Article.create(title: '   Test    Title   ', body: 'Lorem ipsum')
+      expect(article.url).to eq('test-title')
+    end
+  end
 end
