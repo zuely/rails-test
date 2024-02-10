@@ -14,3 +14,4 @@
 The article part is not doing anything. I found the way to set params to partial is with "locals" but only works if set "render partial: 'form'"
 - On form error, rails add div.field_with_errors to the dom breaking bootstrap. Is there a way to avoid it?
 - On delete, I'm loosing the current page of the list. Which is the best way to avoid this problem?
+- En el model, porque aca se usa "self.author ||= 'Unknown'" y en el resto no?
