@@ -10,6 +10,12 @@ Rails.application.routes.draw do
 
   get 'about-us', to: 'about#index', as: :about
 
+  # Users
+  get 'login', to: 'users#login'
+  get 'signup', to: 'users#signup'
+  get 'logout', to: 'users#logout'
+  get 'profile', to: 'users#profile'
+
   # Articles
   # resources :articles
   get 'articles', to: 'articles#index', as: :articles
