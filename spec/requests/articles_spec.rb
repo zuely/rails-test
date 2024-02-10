@@ -80,6 +80,31 @@ RSpec.describe '/articles', type: :request do
         expect(response.body).to include('<h1>404 Page not found</h1>')
       end
     end
+
+    context 'with invalid article url' do
+      it 'show errors' do
+        get articles_edit_url('invalid-url')
+        expect(response).to be_successful
+        expect(response.body).to include('<h1>404 Page not found</h1>')
+      end
+    end
+
+    context 'with invalid article url that starts with a number' do
+      it 'show errors' do
+        get articles_edit_url('44-invalid-url')
+        expect(response).to be_successful
+        expect(response.body).to include('<h1>404 Page not found</h1>')
+      end
+    end
+
+    context 'with invalid article id-url' do
+      it 'show errors' do
+        article = Article.create! valid_attributes
+        get articles_edit_url("#{article.id}-invalid-url")
+        expect(response).to be_successful
+        expect(response.body).to include('<h1>404 Page not found</h1>')
+      end
+    end
   end
 
   describe 'POST /articles/new' do
